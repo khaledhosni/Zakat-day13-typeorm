@@ -33,4 +33,17 @@ export class ProductsRepository {
 
     return this.db.save(product);
   }
+
+
+
+
+  async uploadPhoto(id: string, photoBase64: string) {
+
+  const result = await this.db.update(
+    { productId: id },
+    { photoBase64: photoBase64 },
+  );
+
+  return (result.affected ?? 0) > 0;
+}
 }

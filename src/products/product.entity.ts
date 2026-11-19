@@ -15,4 +15,14 @@ export class Product {
 
   @Column({ name: 'active', type: 'boolean' })
   active: boolean;
+
+
+    // NEW: Product photo
+  @Column({
+    name: 'photo_base64',
+    type: 'text',
+    nullable: true,
+    select: false,
+  })
+  photoBase64: string | null;
 }

@@ -1,6 +1,7 @@
-import { Controller, Get, Patch } from '@nestjs/common';
+import { Controller, Get, Patch, Post } from '@nestjs/common';
 import { ProductsService } from './products.service.js';
 import { Product } from './product.entity.js';
+import { UploadPhotoDto } from './upload-photo.dto.js';
 
 @Controller('products')
 export class ProductsController {
@@ -17,5 +18,10 @@ export class ProductsController {
     @Patch(':id')
     update(id: string, data: Partial<Product>) {
         return this.productsService.update(id, data);
+    }
+
+    @Post(':id/photo')
+    uploadPhoto(id: string, body: UploadPhotoDto) {
+        return this.productsService.uploadPhoto(id, body.photoBase64);
     }
 }
