@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { ProductsService } from './products.service.js';
 import { Product } from './product.entity.js';
 import { UploadPhotoDto } from './upload-photo.dto.js';
@@ -21,7 +21,7 @@ export class ProductsController {
     }
 
     @Post(':id/photo')
-    uploadPhoto(id: string, body: UploadPhotoDto) {
+    uploadPhoto(@Param('id') id: string,  @Body()body: UploadPhotoDto) {
         return this.productsService.uploadPhoto(id, body.photoBase64);
     }
 }
